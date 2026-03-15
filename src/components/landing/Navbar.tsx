@@ -160,6 +160,13 @@ export function Navbar() {
                 Hospitals
               </Link>
               <Link
+                to="/campaign"
+                className="text-foreground font-medium py-2 hover:text-primary"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Campaign
+              </Link>
+              <Link
                 to="/faq"
                 className="text-foreground font-medium py-2 hover:text-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
