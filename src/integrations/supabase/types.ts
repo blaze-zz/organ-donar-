@@ -64,6 +64,8 @@ export type Database = {
           email: string | null
           id: string
           is_active: boolean | null
+          latitude: number | null
+          longitude: number | null
           name: string
           state: string
           updated_at: string
@@ -76,6 +78,8 @@ export type Database = {
           email?: string | null
           id?: string
           is_active?: boolean | null
+          latitude?: number | null
+          longitude?: number | null
           name: string
           state: string
           updated_at?: string
@@ -88,6 +92,8 @@ export type Database = {
           email?: string | null
           id?: string
           is_active?: boolean | null
+          latitude?: number | null
+          longitude?: number | null
           name?: string
           state?: string
           updated_at?: string
