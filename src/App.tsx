@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import Hospitals from "./pages/Hospitals";
 
 // User pages
 import UserDashboard from "./pages/UserDashboard";
@@ -42,6 +43,7 @@ const App = () => (
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<Index />} />
+            <Route path="/hospitals" element={<Hospitals />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
