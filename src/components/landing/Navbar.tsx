@@ -82,6 +82,15 @@ export function Navbar() {
               Hospitals
             </Link>
             <Link
+              to="/campaign"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isScrolled ? "text-foreground" : "text-white/90 hover:text-white"
+              )}
+            >
+              Campaign
+            </Link>
+            <Link
               to="/faq"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",
