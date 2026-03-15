@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Hospitals from "./pages/Hospitals";
+import Campaign from "./pages/Campaign";
 
 // User pages
 import UserDashboard from "./pages/UserDashboard";
@@ -44,6 +45,7 @@ const App = () => (
             {/* Public routes */}
             <Route path="/" element={<Index />} />
             <Route path="/hospitals" element={<Hospitals />} />
+            <Route path="/campaign" element={<Campaign />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
