@@ -94,7 +94,7 @@ export default function Campaign() {
           </div>
           <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-5">
             Free Organ Donor
-            <span className="block bg-gradient-to-r from-accent to-orange-300 bg-clip-text text-transparent mt-2">
+            <span className="block bg-gradient-to-r from-accent to-warning bg-clip-text text-transparent mt-2">
               Awareness Campaign
             </span>
           </h1>
