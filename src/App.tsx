@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Hospitals from "./pages/Hospitals";
+import Campaign from "./pages/Campaign";
 
 // User pages
 import UserDashboard from "./pages/UserDashboard";
