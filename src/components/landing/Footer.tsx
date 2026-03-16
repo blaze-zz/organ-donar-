@@ -83,7 +83,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sidebar-foreground/70">
                 <Phone className="w-5 h-5 text-sidebar-primary" />
-                1-800-LIFELINK
+                1-800-ORGANDONOR
               </li>
               <li className="flex items-start gap-3 text-sidebar-foreground/70">
                 <MapPin className="w-5 h-5 text-sidebar-primary flex-shrink-0 mt-0.5" />
