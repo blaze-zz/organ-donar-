@@ -81,7 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await signUp(email, password, fullName);
       toast({
         title: 'Account created!',
-        description: 'Welcome to LifeLink Organ Donor Network.',
+        description: 'Welcome to Organ Donor Network.',
       });
     } catch (error: any) {
       toast({

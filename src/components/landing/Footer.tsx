@@ -94,7 +94,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-sidebar-border mt-12 pt-8 text-center text-sidebar-foreground/50">
-          <p>© {new Date().getFullYear()} LifeLink Organ Donor Network. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Organ Donor Network. All rights reserved.</p>
         </div>
       </div>
     </footer>
