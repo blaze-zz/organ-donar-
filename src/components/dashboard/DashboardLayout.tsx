@@ -46,7 +46,7 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
           <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
             <Heart className="w-4 h-4 text-primary-foreground" />
           </div>
-          <span className="font-display font-bold text-foreground">LifeLink</span>
+          <span className="font-display font-bold text-foreground">Organ Donor</span>
         </Link>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
