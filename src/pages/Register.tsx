@@ -70,7 +70,7 @@ export default function Register() {
             <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
               <Heart className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-display font-bold text-foreground">LifeLink</span>
+            <span className="text-xl font-display font-bold text-foreground">Organ Donor</span>
           </Link>
 
           <h1 className="text-3xl font-display font-bold text-foreground mb-2">

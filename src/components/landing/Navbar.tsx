@@ -57,7 +57,7 @@ export function Navbar() {
               "text-xl font-display font-bold transition-colors",
               isScrolled ? "text-foreground" : "text-white"
             )}>
-              LifeLink
+              Organ Donor
             </span>
           </Link>
 

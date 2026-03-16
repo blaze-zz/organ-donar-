@@ -12,7 +12,7 @@ export function Footer() {
               <div className="w-10 h-10 rounded-xl gradient-accent flex items-center justify-center">
                 <Heart className="w-5 h-5 text-accent-foreground" />
               </div>
-              <span className="text-xl font-display font-bold">LifeLink</span>
+              <span className="text-xl font-display font-bold">Organ Donor</span>
             </Link>
             <p className="text-sidebar-foreground/70 mb-6">
               Connecting donors with recipients to save lives through a secure, efficient organ donation network.
@@ -79,11 +79,11 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-sidebar-foreground/70">
                 <Mail className="w-5 h-5 text-sidebar-primary" />
-                support@lifelink.org
+                support@organdonor.org
               </li>
               <li className="flex items-center gap-3 text-sidebar-foreground/70">
                 <Phone className="w-5 h-5 text-sidebar-primary" />
-                1-800-LIFELINK
+                1-800-ORGANDONOR
               </li>
               <li className="flex items-start gap-3 text-sidebar-foreground/70">
                 <MapPin className="w-5 h-5 text-sidebar-primary flex-shrink-0 mt-0.5" />
@@ -94,7 +94,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-sidebar-border mt-12 pt-8 text-center text-sidebar-foreground/50">
-          <p>© {new Date().getFullYear()} LifeLink Organ Donor Network. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Organ Donor Network. All rights reserved.</p>
         </div>
       </div>
     </footer>

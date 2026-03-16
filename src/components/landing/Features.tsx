@@ -58,7 +58,7 @@ export function Features() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-            Why Choose LifeLink?
+            Why Choose Organ Donor?
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             We've built the most comprehensive organ donor management platform to save lives efficiently and securely.
