@@ -79,7 +79,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-sidebar-foreground/70">
                 <Mail className="w-5 h-5 text-sidebar-primary" />
-                support@lifelink.org
+                support@organdonor.org
               </li>
               <li className="flex items-center gap-3 text-sidebar-foreground/70">
                 <Phone className="w-5 h-5 text-sidebar-primary" />
