@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Heart, Clock, AlertTriangle, ArrowRight, Droplets } from 'lucide-react';
+import { Heart, Clock, AlertTriangle, ArrowRight, Building2, MapPin, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { Link } from 'react-router-dom';
+
+interface HospitalInfo {
+  name: string;
+  city: string;
+}
 
 interface OrganRequest {
   id: string;
@@ -14,6 +19,14 @@ interface OrganRequest {
   created_at: string;
   hospital_id: string | null;
   medical_condition: string | null;
+  requester_id: string;
+  hospitals: HospitalInfo | null;
+}
+
+interface ProfileInfo {
+  user_id: string;
+  full_name: string;
+  blood_group: string | null;
 }
 
 const urgencyLabels: Record<number, { label: string; color: string }> = {
