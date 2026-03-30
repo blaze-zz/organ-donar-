@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Heart, Clock, AlertTriangle, ArrowRight, Droplets } from 'lucide-react';
+import { Heart, Clock, AlertTriangle, ArrowRight, Building2, MapPin, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { Link } from 'react-router-dom';
+
+interface HospitalInfo {
+  name: string;
+  city: string;
+}
 
 interface OrganRequest {
   id: string;
@@ -14,6 +19,14 @@ interface OrganRequest {
   created_at: string;
   hospital_id: string | null;
   medical_condition: string | null;
+  requester_id: string;
+  hospitals: HospitalInfo | null;
+}
+
+interface ProfileInfo {
+  user_id: string;
+  full_name: string;
+  blood_group: string | null;
 }
 
 const urgencyLabels: Record<number, { label: string; color: string }> = {
@@ -38,6 +51,7 @@ const organIcons: Record<string, string> = {
 
 export function OrganRequests() {
   const [requests, setRequests] = useState<OrganRequest[]>([]);
+  const [profiles, setProfiles] = useState<Record<string, ProfileInfo>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,12 +61,26 @@ export function OrganRequests() {
   const fetchRequests = async () => {
     const { data } = await supabase
       .from('organ_requests')
-      .select('id, organ_type, urgency_level, status, created_at, hospital_id, medical_condition')
+      .select('id, organ_type, urgency_level, status, created_at, hospital_id, medical_condition, requester_id, hospitals(name, city)')
       .in('status', ['pending', 'approved'])
       .order('urgency_level', { ascending: false })
       .order('created_at', { ascending: false })
       .limit(8);
-    if (data) setRequests(data);
+    if (data) {
+      setRequests(data as unknown as OrganRequest[]);
+      const requesterIds = [...new Set(data.map(r => r.requester_id))];
+      if (requesterIds.length > 0) {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('user_id, full_name, blood_group')
+          .in('user_id', requesterIds);
+        if (profileData) {
+          const map: Record<string, ProfileInfo> = {};
+          profileData.forEach(p => { map[p.user_id] = p; });
+          setProfiles(map);
+        }
+      }
+    }
     setLoading(false);
   };
 
@@ -110,6 +138,7 @@ export function OrganRequests() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {requests.map((req, idx) => {
               const urgency = urgencyLabels[req.urgency_level ?? 1] || urgencyLabels[1];
+              const profile = profiles[req.requester_id];
               return (
                 <Card
                   key={req.id}
@@ -127,9 +156,28 @@ export function OrganRequests() {
                       {organLabel(req.organ_type)}
                     </h3>
                     {req.medical_condition && (
-                      <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
+                      <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
                         {req.medical_condition}
                       </p>
+                    )}
+                    {profile && (
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
+                        <User className="w-3 h-3" />
+                        <span>{profile.full_name}</span>
+                        {profile.blood_group && (
+                          <Badge variant="outline" className="text-[10px] px-1 py-0 ml-1">
+                            {profile.blood_group}
+                          </Badge>
+                        )}
+                      </div>
+                    )}
+                    {req.hospitals && (
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
+                        <Building2 className="w-3 h-3" />
+                        <span className="truncate">{req.hospitals.name}</span>
+                        <MapPin className="w-3 h-3 ml-1" />
+                        <span>{req.hospitals.city}</span>
+                      </div>
                     )}
                     <div className="flex items-center justify-between mt-auto pt-3 border-t border-border/50">
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
