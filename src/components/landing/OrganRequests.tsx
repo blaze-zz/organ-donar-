@@ -138,6 +138,7 @@ export function OrganRequests() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {requests.map((req, idx) => {
               const urgency = urgencyLabels[req.urgency_level ?? 1] || urgencyLabels[1];
+              const profile = profiles[req.requester_id];
               return (
                 <Card
                   key={req.id}
@@ -155,9 +156,28 @@ export function OrganRequests() {
                       {organLabel(req.organ_type)}
                     </h3>
                     {req.medical_condition && (
-                      <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
+                      <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
                         {req.medical_condition}
                       </p>
+                    )}
+                    {profile && (
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
+                        <User className="w-3 h-3" />
+                        <span>{profile.full_name}</span>
+                        {profile.blood_group && (
+                          <Badge variant="outline" className="text-[10px] px-1 py-0 ml-1">
+                            {profile.blood_group}
+                          </Badge>
+                        )}
+                      </div>
+                    )}
+                    {req.hospitals && (
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
+                        <Building2 className="w-3 h-3" />
+                        <span className="truncate">{req.hospitals.name}</span>
+                        <MapPin className="w-3 h-3 ml-1" />
+                        <span>{req.hospitals.city}</span>
+                      </div>
                     )}
                     <div className="flex items-center justify-between mt-auto pt-3 border-t border-border/50">
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
