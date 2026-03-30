@@ -51,6 +51,7 @@ const organIcons: Record<string, string> = {
 
 export function OrganRequests() {
   const [requests, setRequests] = useState<OrganRequest[]>([]);
+  const [profiles, setProfiles] = useState<Record<string, ProfileInfo>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -60,12 +61,26 @@ export function OrganRequests() {
   const fetchRequests = async () => {
     const { data } = await supabase
       .from('organ_requests')
-      .select('id, organ_type, urgency_level, status, created_at, hospital_id, medical_condition')
+      .select('id, organ_type, urgency_level, status, created_at, hospital_id, medical_condition, requester_id, hospitals(name, city)')
       .in('status', ['pending', 'approved'])
       .order('urgency_level', { ascending: false })
       .order('created_at', { ascending: false })
       .limit(8);
-    if (data) setRequests(data);
+    if (data) {
+      setRequests(data as unknown as OrganRequest[]);
+      const requesterIds = [...new Set(data.map(r => r.requester_id))];
+      if (requesterIds.length > 0) {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('user_id, full_name, blood_group')
+          .in('user_id', requesterIds);
+        if (profileData) {
+          const map: Record<string, ProfileInfo> = {};
+          profileData.forEach(p => { map[p.user_id] = p; });
+          setProfiles(map);
+        }
+      }
+    }
     setLoading(false);
   };
 
